@@ -14,13 +14,18 @@ int check_cycle(listint_t *list)
 	listint_t *deffi = list;
 	listint_t *effi = list;
 
-	if (!list)
+	if (list == NULL)
+	{
 		return (0);
+	}
 
-	for (; deffi && effi && effi->next; deffi = deffi->next, effi = effi->next->next)
-{
-	if (deffi == effi)
-		return (1);
-}
+	while (deffi && effi && effi->next)
+	{
+		deffi = deffi->next;
+		effi = effi->next->next;
+		if (deffi == effi)
+			return (1);
+	}
+	return (0);
 }
 
