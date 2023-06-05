@@ -22,4 +22,5 @@ int check_cycle(listint_t *list)
 	if (deffi == effi)
 		return (1);
 }
+}
 
