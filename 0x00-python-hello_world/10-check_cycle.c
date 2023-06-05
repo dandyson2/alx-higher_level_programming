@@ -17,13 +17,9 @@ int check_cycle(listint_t *list)
 	if (!list)
 		return (0);
 
-	while (deffi && effi && effi->next)
-	{
-		deffi = deffi->next;
-		effi = effi->next->next;
-		if (deffi == effi)
-			return (1);
-	}
-	return (0);
+	for (; deffi && effi && effi->next; deffi = deffi->next, effi = effi->next->next)
+{
+	if (deffi == effi)
+		return (1);
 }
 
