@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 import sys
 
-def main():
-    count = len(sys.argv) - 1
+def print_arguments(count):
     if count == 0:
         print("0 arguments.")
     elif count == 1:
@@ -13,4 +12,5 @@ def main():
         print("{}: {}".format(i + 1, sys.argv[i + 1]))
 
 if __name__ == "__main__":
-    main()
+    count = len(sys.argv) - 1
+    print_arguments(count)
