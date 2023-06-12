@@ -1,27 +1,5 @@
 #include "lists.h"
 
-/**
- * reverse_listint - Function to linked list
- * @head: Ptr to first node
- * Return: Ptr to 1st node
- */
-
-void reverse_listint(listint_t **head)
-{
-listint_t *prev = NULL;
-listint_t *current = *head;
-listint_t *next = NULL;
-
-while (current != NULL)
-{
-next = current->next;
-current->next = prev;
-prev = current;
-current = next;
-}
-
-*head = prev;
-}
 
 /**
  * is_palindrome - Function that checks if a singly linked
