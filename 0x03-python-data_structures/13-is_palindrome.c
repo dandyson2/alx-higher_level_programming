@@ -32,32 +32,36 @@ current = next;
 
 int is_palindrome(listint_t **head)
 {
-int is_palindrome(listint_t **head)
-{
-listint_t *slow = *head;
-listint_t *fast = *head;
-listint_t *temp = *head;
-listint_t *dup = NULL;
+	listint_t *slow = *head, *fast = *head, *temp = *head, *dup = NULL;
 
-if (*head == NULL || (*head)->next == NULL)
-return (1);
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
 
-while (fast && fast->next)
-{
-slow = slow->next;
-fast = fast->next->next;
-}
+	while (1)
+	{
+		fast = fast->next->next;
+		if (!fast)
+		{
+			dup = slow->next;
+			break;
+		}
+		if (!fast->next)
+		{
+			dup = slow->next->next;
+			break;
+		}
+		slow = slow->next;
+	}
 
-dup = reverse_listint(slow->next);
+	reverse_listint(&dup);
 
-while (dup && temp)
-{
-if (temp->n != dup->n)
-return (0);
-
-temp = temp->next;
-dup = dup->next;
-}
-
-return (1);
-}
+	while (dup && temp)
+	{
+		if (temp->n == dup->n)
+		{
+			dup = dup->next;
+			temp = temp->next;
+		}
+		else
+			return (0);
+	}
