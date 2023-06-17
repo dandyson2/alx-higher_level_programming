@@ -32,13 +32,11 @@ void print_python_bytes(PyObject *p)
 
 	printf("  first %ld bytes:", xexit);
 
-	y = 0;
-	while (y < xexit)
+	for (y = 0; y < xexit; y++)
 		if (bbytes[y] >= 0)
 			printf(" %02x", bbytes[y]);
 		else
 			printf(" %02x", 256 + bbytes[y]);
-	y += 1;
 
 	printf("\n");
 }
@@ -62,13 +60,11 @@ void print_python_list(PyObject *p)
 	printf("[*] Size of the Python List = %ld\n", maxx);
 	printf("[*] Allocated = %ld\n", margin->allocated);
 
-	y = 0;
-	while (y < maxx)
+	for (y = 0; y < maxx; y++)
 	{
 		_object = ((PyListObject *)p)->ob_item[y];
 		printf("Element %ld: %s\n", i, ((_object)->ob_type)->tp_name);
 		if (PyBytes_Check(_object))
 			print_python_bytes(_object);
-		y += 1;
 	}
 }
