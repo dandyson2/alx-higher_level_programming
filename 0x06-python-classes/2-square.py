@@ -26,5 +26,4 @@ class Square:
                 raise TypeError(message)
             if value:
                 raise ValueError(message)
-
         self.__size = size
