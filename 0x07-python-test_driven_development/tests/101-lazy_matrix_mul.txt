@@ -1,0 +1,28 @@
+"""
+Test file for matrix multiplication.
+"""
+
+import numpy as np
+from matrix_multiplication import lazy_matrix_mul
+
+# Test case 1
+m_a = np.array([[1, 2], [3, 4]])
+m_b = np.array([[5, 6], [7, 8]])
+expected_result = np.array([[19, 22], [43, 50]])
+assert np.array_equal(lazy_matrix_mul(m_a, m_b), expected_result)
+
+# Test case 2
+m_a = np.array([[1, 2, 3], [4, 5, 6]])
+m_b = np.array([[7, 8], [9, 10], [11, 12]])
+expected_result = np.array([[58, 64], [139, 154]])
+assert np.array_equal(lazy_matrix_mul(m_a, m_b), expected_result)
+
+# Test case 3 - Incompatible dimensions
+m_a = np.array([[1, 2], [3, 4]])
+m_b = np.array([[5, 6, 7], [8, 9, 10]])
+try:
+    lazy_matrix_mul(m_a, m_b)
+except ValueError as e:
+    assert str(e) == "Matrix dimensions are incompatible for multiplication."
+
+print("All tests passed.")
