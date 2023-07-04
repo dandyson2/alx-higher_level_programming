@@ -1,0 +1,16 @@
+def test_text_indentation():
+    text_indentation("This is a sample text. It contains multiple sentences. And some questions?")
+    # Output:
+    # This is a sample text.
+    #
+    # It contains multiple sentences.
+    #
+    # And some questions?
+
+    text_indentation("Another text with no punctuation marks")
+    # Output:
+    # Another text with no punctuation marks
+
+    # Add more test cases here...
+
+test_text_indentation()
