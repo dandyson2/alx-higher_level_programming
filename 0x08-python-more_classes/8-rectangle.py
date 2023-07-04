@@ -3,7 +3,7 @@
 
 
 class Rectangle:
-    """This represents a rectangle"""
+    """Represents a rectangle"""
 
     number_of_instances = 0
     print_symbol = "#"
@@ -16,8 +16,8 @@ class Rectangle:
             height (int): Represents the height of the rectangle.
 
         Raises:
-            TypeError: If size is not an integer.
-            ValueError: If size is less than zero.
+            TypeError: If width or height is not an integer.
+            ValueError: If width or height is less than zero.
         """
         self.width = width
         self.height = height
@@ -102,10 +102,6 @@ class Rectangle:
         Raises:
             TypeError: If either rect_1 or rect_2 is not an instance of Rectan
         """
-        if not isinstance(rect_1, Rectangle):
-            raise TypeError("rect_1 must be an instance of Rectangle")
-        if not isinstance(rect_2, Rectangle):
-            raise TypeError("rect_2 must be an instance of Rectangle")
-
-        while rect_1.area() > rect_2.area():
+        while rect_1.area() >= rect_2.area():
             return rect_1
+        return rect_2
