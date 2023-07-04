@@ -1,0 +1,8 @@
+def test_say_my_name():
+    say_my_name("John", "Doe")  # Output: My name is John Doe
+
+    say_my_name("Alice")  # Output: My name is Alice
+
+    # Add more test cases here...
+
+test_say_my_name()
