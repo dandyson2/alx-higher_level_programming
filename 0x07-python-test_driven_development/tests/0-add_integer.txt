@@ -1,0 +1,16 @@
+import sys
+sys.path.insert(0, 'path/to/0-add_integer.py')
+from addition import add_integer
+
+def test_add_integer():
+    assert add_integer(2, 3) == 5
+    assert add_integer(5, 10) == 15
+    assert add_integer(2.5, 3.7) == 5
+    assert add_integer(5.8, 10.1) == 15
+    assert add_integer(2.5, 3) == 5
+    assert add_integer(5, 10.7) == 15
+    assert add_integer(-5, 5) == 0
+    assert add_integer(-5, -10) == -15
+    assert add_integer(0, 0) == 0
+
+test_add_integer()
