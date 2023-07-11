@@ -1,0 +1,34 @@
+import unittest
+from base_geometry import BaseGeometry
+
+class TestBaseGeometry(unittest.TestCase):
+    def test_area_not_implemented(self):
+        geometry = BaseGeometry()
+        with self.assertRaises(NotImplementedError):
+            geometry.area()
+
+    def test_integer_validator_valid_value(self):
+        geometry = BaseGeometry()
+        name = "test_value"
+        value = 10
+        try:
+            geometry.integer_validator(name, value)
+        except (TypeError, ValueError):
+            self.fail("integer_validator raised an unexpected exception for valid value {value}".format(value=value))
+
+    def test_integer_validator_invalid_type(self):
+        geometry = BaseGeometry()
+        name = "test_value"
+        value = "not_an_integer"
+        with self.assertRaises(TypeError):
+            geometry.integer_validator(name, value)
+
+    def test_integer_validator_negative_value(self):
+        geometry = BaseGeometry()
+        name = "test_value"
+        value = -10
+        with self.assertRaises(ValueError):
+            geometry.integer_validator(name, value)
+
+if __name__ == "__main__":
+    unittest.main()
