@@ -4,9 +4,11 @@ Defines a base geometry class, BaseGeometry.
 """
 
 
-class BaseGeometry:
-    """This class represents a base geometry."""
+BaseGeometry = __import__('6-base_geometry').BaseGeometry
 
-    def area(self):
-        """Raises an exception as the method is not implemented yet."""
-        raise NotImplementedError("area() is not implemented")
+bg = BaseGeometry()
+
+try:
+    print(bg.area())
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
