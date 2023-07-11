@@ -4,11 +4,14 @@ Defines a base geometry class, BaseGeometry.
 """
 
 
-BaseGeometry = __import__('6-base_geometry').BaseGeometry
+class BaseGeometry:
+    def area(self):
+        raise Exception("area()  is not implemented in the derived class.")
+
 
 bg = BaseGeometry()
 
 try:
     print(bg.area())
 except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
+    print("[{}] {}".format(type(e).__name__, e))
