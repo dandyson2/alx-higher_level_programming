@@ -2,17 +2,15 @@
 """This module defines a Rectangle"""
 
 
-def __init__(self, width, height):
-    """Initialize a new rectangle"""
-    self.width = width
-    self.height = height
+Rectangle = __import__('9-rectangle').Rectangle
 
 
-def area(self):
-    """Calculate the area of the rectangle"""
-    return self.width * self.height
+class Square(Rectangle):
+    """Represent a square"""
 
-
-def perimeter(self):
-    """Calculate the perimeter of the rectangle"""
-    return 2 * (self.width + self.height)
+    def __init__(self, size):
+        """Initialize a new square
+        """
+        self.integer_validator("size", size)
+        super().__init__(size, size)
+        self.__size = size
