@@ -6,7 +6,7 @@ Defines a base geometry class, BaseGeometry.
 
 class BaseGeometry:
     def area(self):
-        raise Exception("area()  is not implemented in the derived class.")
+        raise Exception("area() method is not implemented in the derived class.")
 
 
 bg = BaseGeometry()
