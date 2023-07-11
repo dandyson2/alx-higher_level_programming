@@ -16,7 +16,7 @@ class Rectangle:
 
     def __str__(self):
         """Return a string representation of the rectangle"""
-        return "Rectang(width={}, height={})".format(self._width, self._height)
+        return "Rectangle(width={}, height={})".format(self._width, self._height)
 
 
 class Square(Rectangle):
