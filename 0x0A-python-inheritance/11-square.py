@@ -1,42 +1,32 @@
 #!/usr/bin/python3
-"""Defines a Rectangle subclass Square."""
-from typing import Union
+"""This module defines a Rectangle"""
 
 
-class BaseGeometry:
-    """Base class for geometry"""
+class Rectangle:
+    """Represent a rectangle"""
 
-    def area(self) -> float:
-        """Calculates the area"""
-        raise NotImplementedError("area() is not implemented")
-
-    def integer_validator(self, name: str, value: Union[int, float]) -> None:
-        """Validates if value is a positive integer"""
-        if not isinstance(value, (int, float)):
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
-
-
-class Rectangle(BaseGeometry):
-    """Class representing a rectangle using BaseGeometry"""
-
-    def __init__(self, width: int, height: int) -> None:
+    def __init__(self, width, height):
         """Initialize a new rectangle"""
-        super().integer_validator("width", width)
-        self.__width = width
-        super().integer_validator("height", height)
-        self.__height = height
+        self._width = width
+        self._height = height
 
-    def area(self) -> int:
-        """Returns the area of the rectangle"""
-        return self.__width * self.__height
+    def area(self):
+        """Calculate the area of the rectangle"""
+        return self._width * self._height
+
+    def __str__(self):
+        """Return a string representation of the rectangle"""
+        return "Rectang(width={}, height={})".format(self._width, self._height)
 
 
 class Square(Rectangle):
-    """Class representing a square using Rectangle"""
+    """Represent a square"""
 
-    def __init__(self, size: int) -> None:
+    def __init__(self, size):
         """Initialize a new square"""
         super().__init__(size, size)
-        self.__size = size
+        self._size = size
+
+    def __str__(self):
+        """Return a string representation of the square"""
+        return "Square(side={})".format(self._size)
