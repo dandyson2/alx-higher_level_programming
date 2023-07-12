@@ -1,25 +1,20 @@
 #!/usr/bin/python3
-"""Module that defines a Pascal's Triangle function
-
-"""
+"""This module defines a Pascal's Triangle function"""
 
 
 def pascal_triangle(n):
-    """Function that represents Pascal's Triangle of size n
-    """
+    """Represents Pascal's Triangle of size n"""
     if n <= 0:
         return []
 
     triangles = [[1]]
-
-
-while len(triangles) != n:
-    current_row = triangles[-1]
-    next_row = [1]
-    i = 0
-    while i < len(current_row) - 1:
-        next_row.append(current_row[i] + current_row[i + 1])
-        i += 1
-    next_row.append(1)
-    triangles.append(next_row)
-return triangles
+    while len(triangles) < n:
+        tri = triangles[-1]
+        tmp = [1]
+        i = 0
+        while i < len(tri) - 1:
+            tmp.append(tri[i] + tri[i + 1])
+            i += 1
+        tmp.append(1)
+        triangles.append(tmp)
+    return triangles
