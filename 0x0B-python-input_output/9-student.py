@@ -12,9 +12,7 @@ def __init__(self, first_name, last_name, age):
 
 
 def to_json(self):
-    """Gets a dictionary representation of the Student"""
-    return {
-        'first_name': self.first_name,
-        'last_name': self.last_name,
-        'age': self.age
-    }
+    """Gets a dictionary representation of the Student
+
+    """
+    return self.__dic__
