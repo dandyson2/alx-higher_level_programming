@@ -6,13 +6,11 @@
 
 def append_after(filename="", search_string="", new_string=""):
     """Inserts text after each line containing a given string in a file"""
-    text = ""
-    with open(filename) as r:
-        line = r.readline()
-        while line:
-            text += line
+    lines = []
+    with open(filename) as file:
+        for line in file:
+            lines.append(line)
             if search_string in line:
-                text += new_string
-            line = w.readline()
-    with open(filename, "w") as w:
-        w.write(text)
+                lines.append(new_string)
+    with open(filename, "w") as file:
+        file.writelines(lines)
