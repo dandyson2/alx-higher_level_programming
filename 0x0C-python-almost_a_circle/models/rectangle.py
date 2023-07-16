@@ -97,6 +97,11 @@ class Rectangle(Base):
         Args:
             value (int): The new x-coordinate of the rectangle's position.
         """
+        if type(value) != int:
+            raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
+
         self.__x = value
 
     @property
@@ -117,4 +122,9 @@ class Rectangle(Base):
         Args:
             value (int): The new y-coordinate of the rectangle's position.
         """
+        if type(value) != int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
+
         self.__y = value
