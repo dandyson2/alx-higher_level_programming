@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Moduleclass Rectangle which implements Base
+    Module class Rectangle which implements Base
 """
 from models.base import Base
 
@@ -102,5 +102,9 @@ class Rectangle(Base):
             Args:
                 value (int): value to be set.
         """
+        if type(value) != int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
 
         self.__y = value
