@@ -1,6 +1,11 @@
 #!/usr/bin/node
 
-// Print the value of the variable to the console.
-console.log("C is fun");
-console.log("Python is cool");
-console.log("JavaScript is amazing");
+// Define a multiline string containing messages about programming languages.
+const programmingLanguages = `
+C is fun
+Python is cool
+JavaScript is amazing
+`;
+
+// Print the programmingLanguages string to the console.
+console.log(programmingLanguages);
