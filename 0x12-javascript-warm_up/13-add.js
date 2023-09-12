@@ -1,5 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 
 module.exports = {
   add: (a, b) => a + b
 };
+
