@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-module.exports = {
+exports = {
   add: (a, b) => a + b
 };
 
