@@ -1,11 +1,6 @@
 #!/usr/bin/node
 
-// Define a variable with a multiline string.
-const myVar = `
-C is fun,
-Python is cool,
-JavaScript is amazing
-`;
-
 // Print the value of the variable to the console.
-console.log(myVar);
+console.log("C is fun");
+console.log("Python is cool");
+console.log("JavaScript is amazing");
