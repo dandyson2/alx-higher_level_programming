@@ -7,7 +7,9 @@ database `hbtn_0e_0_usa`.
 import MySQLdb
 from sys import argv
 
+
 def list_states(username, password, database_name):
+
     """
     Access the database and retrieve the states.
     """
@@ -18,13 +20,12 @@ def list_states(username, password, database_name):
         cur = db.cursor()
         cur.execute("SELECT * FROM states")
         rows = cur.fetchall()
-
         for row in rows:
             print(row)
-        
         db.close()
     except MySQLdb.Error as e:
         print(f"Error: {e}")
+
 
 if __name__ == '__main__':
     if len(argv) != 4:
