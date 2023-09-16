@@ -9,33 +9,32 @@ import MySQLdb
 from sys import argv
 
 
-def list_states_with_N():
+def list_states_with_letter_n(username, password, database_name):
+    """
+    Access the database and retrieve the states
+    with names starting with 'N'.
+    """
     try:
-        # Establish a database connection
-        db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
-                             passwd=argv[2], db=argv[3])
+        db = MySQLdb.connect(host="localhost", user=username, port=3306,
+                             passwd=password, db=database_name)
 
-        # Create a cursor object
         cur = db.cursor()
-
-        # Execute the SQL query
         cur.execute("SELECT * FROM states WHERE name .. 'N%' ORDER BY id ASC")
-
-        # Fetch all the rows as a list of tuples
         rows = cur.fetchall()
 
-        # Print the results
         for row in rows:
             print(row)
 
     except MySQLdb.Error as e:
-        print(f"Database error: {e}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Error: {e}")
     finally:
-        # Close the database connection, whether there's an error or not
-        db.close()
+        if db:
+            db.close()
 
 
 if __name__ == '__main__':
-    list_states_with_N()
+    if len(argv) != 4:
+        print("Usage: ./script.py <username> <password> <database_name>")
+    else:
+        username, password, database_name = argv[1], argv[2], argv[3]
+        list_states_with_letter_n(username, password, database_name)
