@@ -4,39 +4,35 @@ This script takes an argument and displays all values in the states
 where `name` matches the argument from the database `hbtn_0e_0_usa`.
 """
 
+# Import necessary modules
 import MySQLdb
-import sys
+from sys import argv
 
 
-def main(argv):
-    if len(argv) != 5:
-        print("Usage: {} <username> <password> \
-                <database> <state_name>".format(argv[0]))
-        sys.exit(1)
-
-    username, password, database, state_name = argv[1], argv[2], argv[3],
-    argv[4]
-
-    try:
-        db = MySQLdb.connect(host="localhost", user=username, port=3306,
-                             passwd=password, db=database)
-
-        cur = db.cursor()
-        cur.execute("SELECT * FROM states WHERE \
-                name LIKE BINARY %s ORDER BY id ASC", (state_name,))
-        rows = cur.fetchall()
-
-        if not rows:
-            print("No matching states found.")
-        else:
-            for row in rows:
-                print(row)
-
-        db.close()
-    except MySQLdb.Error as e:
-        print("Error connecting to the database:", e)
-        sys.exit(1)
-
-
+# Check if the script is the main programm
 if __name__ == '__main__':
-    main(sys.argv)
+    # Access the database and retrieve states
+
+    # Establish a connection to the database
+    db = MySQLdb.connect(
+        host="localhost",
+        user=argv[1],
+        port=3306,
+        passwd=argv[2],
+        db=argv[3]
+    )
+
+    # Create a cursor object to interact with the database
+    cur = db.cursor()
+
+    # Execute an SQL query to select states matching the provided name
+    cur.execute("SELECT * FROM states WHERE \
+            name LIKE BINARY '{}' \
+            ORDER BY states.id ASC".format(argv[4]))
+
+    # Fetch all the rows from the query result
+    rows = cur.fetchall()
+
+    # Iterate through the rows and print each one
+    for row in rows:
+        print(row)
