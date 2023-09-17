@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 This script retrieves and prints the ID of a State object
-with the name provided as an argument from the database `hbtn_0e_6_usa`.
+with the specified name from the 'hbtn_0e_6_usa' database.
 """
 
 from sys import argv
@@ -10,16 +10,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-def main():
-    # Check if the correct number of command-line arguments is provided
-    if len(argv) != 5:
-        print("Usage: {} <username> <password> \
-                <database> <state_name>".format(argv[0]))
-        return
-
-    # Create a database URI using command-line arguments
-    db_uri = 'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        argv[1], argv[2], argv[3])
+if __name__ == "__main__":
+    # Build the database connection URI using command-line arguments
+    db_user, db_password, db_name, state_name = argv[1:5]
+    db_uri = f'mysql+mysqldb://{db_user}:{db_password}@localhost:3306 \
+    /{db_name}'
 
     # Create a database engine
     engine = create_engine(db_uri)
@@ -30,16 +25,10 @@ def main():
     # Create a session
     session = Session()
 
-    # Query the State object with the given name
-    instance = session.query(State).filter(State.name == argv[4]).first()
+    # Query the State object with the specified name
+    state = session.query(State).filter(State.name == state_name).first()
 
-    # Check if the state was found or not
-    if instance is None:
+    if state is None:
         print('State not found')
     else:
-        # Print the State object's id
-        print('State ID: {}'.format(instance.id))
-
-
-if __name__ == "__main__":
-    main()
+        print(f'State ID: {state.id}')
