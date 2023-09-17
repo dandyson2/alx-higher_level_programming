@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """
-This script takes an argument and
-displays all values in the states
-where `name` matches the argument
-from the database `hbtn_0e_0_usa`.
+This script takes an argument and displays all values in the states
+where `name` matches the argument from the database `hbtn_0e_0_usa`.
 """
 
 import MySQLdb
@@ -24,12 +22,15 @@ def main(argv):
                              passwd=password, db=database)
 
         cur = db.cursor()
-        cur.execute("SELECT * FROM states \
-                WHERE name LIKE BINARY %s ORDER BY id ASC", (state_name,))
+        cur.execute("SELECT * FROM states WHERE \
+                name LIKE BINARY %s ORDER BY id ASC", (state_name,))
         rows = cur.fetchall()
 
-        for row in rows:
-            print(row)
+        if not rows:
+            print("No matching states found.")
+        else:
+            for row in rows:
+                print(row)
 
         db.close()
     except MySQLdb.Error as e:
