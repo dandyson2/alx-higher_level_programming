@@ -10,7 +10,7 @@ def find_peak(input_list):
     Returns: peak of input_list or None
     """
     size = len(input_list)
-    
+
     if size == 0:
         return None
 
@@ -18,7 +18,7 @@ def find_peak(input_list):
 
     for _ in range(size):
         mid_e = mid // 2
-        
+
         if (mid < size - 1 and input_list[mid] < input_list[mid + 1]):
             mid += mid_e if mid_e != 0 else 2
         elif mid_e > 0 and input_list[mid] < input_list[mid - 1]:
