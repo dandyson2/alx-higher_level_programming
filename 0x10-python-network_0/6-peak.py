@@ -14,14 +14,16 @@ def find_peak(input_list):
     if size == 0:
         return None
 
-    mid = size // 2
+    start = 0
+    end = size - 1
 
     for _ in range(size):
-        mid_e = mid // 2
+        mid = (start + end) // 2
 
-        if (mid < size - 1 and input_list[mid] < input_list[mid + 1]):
-            mid += mid_e if mid_e != 0 else 2
-        elif mid_e > 0 and input_list[mid] < input_list[mid - 1]:
-            mid -= mid_e if mid_e != 0 else 2
+        if (mid < size - 1 and
+                input_list[mid] < input_list[mid + 1]):
+            start = mid + 1
+        elif mid > 0 and input_list[mid] < input_list[mid - 1]:
+            end = mid - 1
         else:
             return input_list[mid]
