@@ -1,9 +1,16 @@
 #!/usr/bin/python3
-"""Python script that takes in a URL, sends a request to the URL."""
-import requests
+"""
+Python script that takes in a URL, sends a request to the URL and displays ...
+"""
+import sys
+import urllib.error
+import urllib.request
 
 if __name__ == "__main__":
-    response = requests.get("https://alx-intranet.hbtn.io/status")
-    print("Body response:")
-    print("\t- type:", type(response.text))
-    print("\t- content:", response.text)
+    url = sys.argv[1]
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            print(response.read().decode("ascii"))
+    except urllib.error.HTTPError as e:
+        print(f"Error code: {e.code}")
