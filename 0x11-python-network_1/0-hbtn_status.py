@@ -4,15 +4,9 @@ import urllib.request
 
 if __name__ == "__main__":
     url = "https://alx-intranet.hbtn.io/status"
-
-    # Create a request object
-    request = urllib.request.Request(url)
-
-    # Send the request and handle the response
-    with urllib.request.urlopen(request) as response:
-        body = response.read().decode("utf-8")
-
-        # Print information about the response
+    with urllib.request.urlopen(url) as response:
+        body = response.read()
         print("Body response:")
         print(f"\t- type: {type(body)}")
         print(f"\t- content: {body}")
+        print(f"\t- utf8 content: {body.decode('utf-8')}")
