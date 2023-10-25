@@ -1,26 +1,16 @@
 #!/usr/bin/node
+
 const request = require('request');
-
+const apiUrl = 'http://swapi.co/api/films/';
 const filmId = process.argv[2];
-const url = `http://swapi.co/api/films/${filmId}`;
 
-const fetchData = (url) => {
-  return new Promise((resolve, reject) => {
-    request(url, (error, response, body) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(body);
-      }
-    });
-  });
-};
+const url = `${apiUrl}${filmId}`;
 
-fetchData(url)
-  .then((body) => {
+request(url, (error, response, body) => {
+  if (error) {
+    console.error(error);
+  } else {
     const filmData = JSON.parse(body);
     console.log(filmData.title);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+  }
+});
