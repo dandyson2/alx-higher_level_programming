@@ -1,33 +1,31 @@
 #!/usr/bin/node
-const axios = require('axios');
 
-async function fetchFilmCharacters(filmId) {
-  try {
-    const response = await axios.get(`https://swapi-api.hbtn.io/api/films/${filmId}`);
-    const characters = response.data.characters;
-    await printCharacters(characters, 0);
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
-
-async function printCharacters(characters, index) {
-  if (index >= characters.length) {
-    return;
-  }
-
-  try {
-    const response = await axios.get(characters[index]);
-    console.log(response.data.name);
-    await printCharacters(characters, index + 1);
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
+const request = require('request');
 
 const filmId = process.argv[2];
-if (filmId) {
-  fetchFilmCharacters(filmId);
-} else {
-  console.error('Please provide a valid film ID as a command-line argument.');
+const apiUrl = `https://swapi-api.hbtn.io/api/films/${filmId}`;
+
+request(apiUrl, function (error, response, body) {
+  if (!error) {
+    const characters = JSON.parse(body).characters;
+    printCharacters(characters, 0);
+  } else {
+    console.error('Error:', error);
+  }
+});
+
+function printCharacters(characters, index) {
+  if (index >= characters.length) {
+    return; // Base case: all characters have been printed
+  }
+
+  request(characters[index], function (error, response, body) {
+    if (!error) {
+      const characterName = JSON.parse(body).name;
+      console.log(characterName);
+      printCharacters(characters, index + 1); // Recursively print the next character
+    } else {
+      console.error('Error:', error);
+    }
+  });
 }
